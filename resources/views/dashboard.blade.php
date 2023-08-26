@@ -42,7 +42,7 @@ $totalTimes = 0;
                     }
                     ?>
                     <a href="{{route('log.view', $log->id)}}" class="">
-                        <div class="mx-4 my-4 bg-gray-100 p-4 sm:rounded overflow-hidden relative z-0 hover:bg-blue-100 transition-all">
+                        <div class="mx-4 mb-4 bg-gray-100 p-4 sm:rounded overflow-hidden relative z-0 hover:bg-blue-100 transition-all">
                             <div class="relative z-20">
                                 <div class="flex justify-between">
                                     <div class="flex justify-center items-center">
