@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SquadController;
 use App\Models\Log;
 use App\Models\Team;
 use App\Models\Workout;
@@ -42,6 +44,13 @@ Route::get('/log', [LogController::class, 'index'])->middleware(['auth', 'verifi
 Route::get('/log/{id}', [LogController::class, 'view'])->middleware(['auth', 'verified'])->name('log.view');
 Route::post('/submit-log', [LogController::class, 'store'])->name('submit.log');
 Route::delete('/log/{id}', [LogController::class, 'destroy'])->name('log.destroy');
+
+Route::get('/squads', [SquadController::class, 'index'])->middleware(['auth', 'verified'])->name('edit-squads');
+Route::get('squads/create', [SquadController::class, 'create'])->middleware(['auth', 'verified'])->name('squad-create');
+Route::post('/submit-squad', [SquadController::class, 'store'])->name('submit.squad');
+
+Route::get('/users', [RegisteredUserController::class, 'index'])->middleware(['auth', 'verified'])->name('users');
+Route::post('/users', [RegisteredUserController::class, 'update'])->middleware(['auth', 'verified'])->name('update.user');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

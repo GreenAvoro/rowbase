@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Squad;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -47,5 +48,29 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            "user-id"       => 'required',
+            'squad-select'  => 'required'
+        ]);
+
+        $user = User::find($request->input('user-id'));
+        $user->squad_id = $request->input('squad-select');
+
+        $user->save();
+
+        return redirect('/users');
+    }
+
+
+    public function index()
+    {
+        return view('users',[
+            'users'         => User::all(),
+            'squads'        => Squad::all()
+        ]);
     }
 }

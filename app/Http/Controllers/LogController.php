@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Log;
+use App\Models\Squad;
 use App\Models\TimeDistance;
 use App\Models\User;
 use App\Models\Workout;
@@ -25,6 +26,7 @@ class LogController extends Controller
     {
         $workout = $request->query('workout');
         $user = $request->query('user');
+        $squad = $request->query('squad');
 
         $query = Log::query();
 
@@ -37,12 +39,16 @@ class LogController extends Controller
         {
             $query->where('user_id', $user);
         }
+        if($squad != 'all')
+        {
+            $query->where('squad_id', $squad);
+        }   
 
 
         $logs = $query;
 
 
-        if(!$request->hasAny(['workout', 'user']))
+        if(!$request->hasAny(['workout', 'user', 'squad']))
         {
             $logs = Log::orderBy('datetime', 'desc');
         }
@@ -51,7 +57,8 @@ class LogController extends Controller
             'logs'      => $logs->paginate(5),
             'user'      => Auth::user(),
             'workouts'  => Workout::all(),
-            'users'     => $users->all()
+            'users'     => $users->all(),
+            'squads'    => Squad::all(),
         ]);
     }
 
@@ -88,6 +95,7 @@ class LogController extends Controller
         $log->user_id = Auth::user()->id;
         $log->team_id = Auth::user()->team_id;
         $log->workout_id = $validatedData['workout'];
+        $log->squad_id = Auth::user()->squad_id;
         $log->datetime = Carbon::now('Pacific/Auckland');
         
 

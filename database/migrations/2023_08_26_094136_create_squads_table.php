@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,16 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('squads', function (Blueprint $table) {
             $table->id();
-            $table->integer('workout_id');
-            $table->integer('squad_id');
-            $table->integer('user_id');
-            $table->integer('team_id');
-            $table->dateTime('datetime')->default(now());
-            $table->string('image')->nullable();
+            $table->string('name');
+            $table->string('color')->default('blue-500');
             $table->timestamps();
         });
+
+
+        DB::table('squads')->insert([
+            'id'        => 1,
+            'name'      => 'Default Squad',
+        ]);
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        Schema::dropIfExists('squads');
     }
 };

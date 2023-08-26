@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
@@ -16,14 +16,32 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('create-log')" :active="request()->routeIs('create-log')">
+                        {{ __('Log a Workout') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="h-8 w-px bg-gray-300 ml-5"></div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                     <x-nav-link :href="route('logs')" :active="request()->routeIs('logs')">
                         {{ __('View Logs') }}
                     </x-nav-link>
                 </div>
+                
+
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('create-log')" :active="request()->routeIs('create-log')">
-                        {{ __('Log a Workout') }}
+                    <x-nav-link :href="route('edit-squads')" :active="(request()->routeIs('edit-squads') || request()->routeIs('squad-create'))">
+                        {{ __('Squads') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('users')" :active="(request()->routeIs('users') || request()->routeIs('users'))">
+                        {{ __('Users') }}
                     </x-nav-link>
                 </div>
             </div>
