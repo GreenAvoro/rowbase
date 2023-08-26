@@ -96,7 +96,6 @@ class LogController extends Controller
             ddd($log->errors());
         }
         // Assign other form fields to the model properties
-
         for($i=0; $i < 10; $i++){
             if($request->input('time_'.$i) != null){
                 $timeDistance = new TimeDistance();
@@ -107,6 +106,10 @@ class LogController extends Controller
                 $timeDistance->interval_no = $i;
 
                 $timeDistance->save();
+                if(!$timeDistance->save())
+                {
+                    ddd($timeDistance->errors());
+                }
             }
         }
 

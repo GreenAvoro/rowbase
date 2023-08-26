@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->integer('workout_id');
             $table->integer('distance');
+            $table->integer('interval_no');
             $table->time('time');
             $table->timestamps();
         });
@@ -25,18 +26,21 @@ return new class extends Migration
         DB::table('time_distance_presets')->insert([
             'id'        => 1,
             'workout_id'=> 1,
+            'interval_no'=> 1,
             'distance'  => 0,
             'time'      => '00:40:00',
         ]);
         DB::table('time_distance_presets')->insert([
             'id'        => 2,
             'workout_id'=> 1,
+            'interval_no'=> 2,
             'distance'  => 0,
             'time'      => '00:40:00',
         ]);
         DB::table('time_distance_presets')->insert([
             'id'        => 3,
             'workout_id'=> 2,
+            'interval_no'=> 1,
             'distance'  => 5000,
             'time'      => '00:00:00',
         ]);

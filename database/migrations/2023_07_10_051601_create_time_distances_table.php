@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('distance');
             $table->time('time');
             $table->integer('log_id');
-            $table->integer('workout_id');
+            $table->integer('interval_no');
             $table->timestamps();
         });
     }

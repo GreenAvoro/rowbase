@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('team_id');
             $table->dateTime('datetime')->default(now());
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
