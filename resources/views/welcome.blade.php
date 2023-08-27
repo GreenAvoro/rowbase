@@ -31,7 +31,7 @@
             @endif
 
             
-            <div class="flex flex-col justify-center items-center">
+            <div class="flex flex-col justify-center items-center h-96">
                 <x-application-logo class="h-10"/>
             </div>
 

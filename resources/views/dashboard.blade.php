@@ -16,7 +16,7 @@ $totalTimes = 0;
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-3 gap-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-1 gap-4 md:grid-cols-3">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2">
                 <h3 class="p-4 text-xl font-bold">Recent Logs<span class="text-sm text-gray-500"> - showing the 20 most recent workout logs</span></h3>
 
