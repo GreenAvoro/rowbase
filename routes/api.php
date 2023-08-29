@@ -30,7 +30,11 @@ Route::get('/logs', function()
     {
         $logs_json[] = [
             'user'      => $log->user->name,
-            'workout'   => $log->workout->name
+            'workout'   => $log->workout->name,
+            'date'      => date('D dS M g:ia',strtotime($log->datetime)),
+            'times'     => $log->times,
+            'squad'     => $log->user->squad->name
+
         ];
     }
     return json_encode($logs_json);
