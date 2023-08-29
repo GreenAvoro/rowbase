@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Log;
+use App\Models\User;
+use App\Models\Workout;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,5 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/logs', function()
 {
     $logs = Log::all();
-    return json_encode($logs);
+    $logs_json = [];
+    foreach($logs as $log)
+    {
+        $logs_json[] = [
+            'user'      => $log->user->name,
+            'workout'   => $log->workout->name
+        ];
+    }
+    return json_encode($logs_json);
 });
