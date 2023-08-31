@@ -51,10 +51,11 @@ Route::post('/sanctum/token', function (Request $request) {
  
     $user = User::where('email', $request->email)->first();
     if (! $user || ! Hash::check($request->password, $user->password)) {
+        return "No";
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorrect.'],
         ]);
     }
- 
+    return "RAWR";
     return $user->createToken($request->device_name)->plainTextToken;
 });
