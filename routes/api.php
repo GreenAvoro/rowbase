@@ -56,6 +56,5 @@ Route::post('/sanctum/token', function (Request $request) {
             'email' => ['The provided credentials are incorrect.'],
         ]);
     }
-    return "RAWR";
     return $user->createToken($request->device_name)->plainTextToken;
 });
