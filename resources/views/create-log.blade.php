@@ -10,10 +10,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
-                <form action="{{route('submit.log')}}" method="POST" enctype="multipart/form-data" id="log-workout-form">
+                <form action="{{route('submit.log')}}" method="POST" enctype="multipart/form-data" id="log-workout-form" class="md:p-0 py-4 px-12 md:block flex flex-col items-stretch">
                     @csrf
                     <label for="workout">Workout Type</label><br>
-                    <select name="workout" id="workout" class="rounded">
+                    <select name="workout" id="workout" class="rounded lg:inline block lg:w-auto w-full">
                         @foreach ($workouts as $workout)
                             <option value="{{$workout->id}}" class="workout-option">{{$workout->name}}</option>
                         @endforeach
