@@ -17,10 +17,10 @@ $totalTimes = 0;
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg col-span-2 m-2">
                 <h3 class="p-4 text-xl font-bold">Recent Logs<span class="text-sm text-gray-500"> - showing the 20 most recent workout logs</span></h3>
                 @if (count($logs) <= 0)
-                    <div class="flex justify-center items-center h-2/3">
+                    <div class="flex justify-center items-center h-2/3 md:p-0 pb-12">
                         <p class="font-bold text-gray-400 text-xl">No workouts logged :(</p>
                     </div>
                 @endif
@@ -83,7 +83,7 @@ $totalTimes = 0;
                 ?>
             </div>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-auto">
+            <div class="bg-white overflow-hidden shadow-sm m-2 rounded-lg mb-auto col-span-2 md:col-span-1">
                 <h3 class="p-4 pb-0 text-xl font-bold">My Weekly Stats</h3>
 
                 <div class="grid grid-cols-2 gap-2">
