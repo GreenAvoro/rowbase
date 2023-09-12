@@ -20,7 +20,7 @@ $totalTimes = 0;
             <div class="bg-white overflow-hidden shadow-sm rounded-lg col-span-2 m-2">
                 <h3 class="p-4 text-xl font-bold">Recent Logs<span class="text-sm text-gray-500"> - showing the 20 most recent workout logs</span></h3>
                 @if (count($logs) <= 0)
-                    <div class="flex justify-center items-center h-2/3 md:p-0 pb-12">
+                    <div class="flex justify-center items-center md:h-2/3 md:p-0 pb-12">
                         <p class="font-bold text-gray-400 text-xl">No workouts logged :(</p>
                     </div>
                 @endif
