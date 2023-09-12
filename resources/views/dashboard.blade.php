@@ -26,22 +26,26 @@ $totalTimes = 0;
                 @endif
                 @foreach ($logs as $log)
                     <?php
+                    
+
                     if($log->user_id == $user->id)
                     {
-                        $totalWorkouts++;
-                        foreach ($log->times  as $time)
-                        {
-                            $totalTimes++;
-                            $totalKilometers += $time->distance;
-                            $fiveHundreds = $time->distance / 500;
-                            $timeParts = explode(':', $time->time);
-                            // $hours = (int)$timeParts[0];
-                            // $minutes = (int)$timeParts[1];
-                            $seconds = ((float)$timeParts[0]*60*60) + ((float)$timeParts[1]*60) + (float)$timeParts[2];
-                            $hours = $seconds /60 / 60;
-                            $totalTime += $hours;
+                        if(strtotime($log->datetime) > strtotime('this month')){   
+                            $totalWorkouts++;
+                            foreach ($log->times  as $time)
+                            {
+                                $totalTimes++;
+                                $totalKilometers += $time->distance;
+                                $fiveHundreds = $time->distance / 500;
+                                $timeParts = explode(':', $time->time);
+                                // $hours = (int)$timeParts[0];
+                                // $minutes = (int)$timeParts[1];
+                                $seconds = ((float)$timeParts[0]*60*60) + ((float)$timeParts[1]*60) + (float)$timeParts[2];
+                                $hours = $seconds /60 / 60;
+                                $totalTime += $hours;
 
-                            $averageSplit += ($seconds / $fiveHundreds);
+                                $averageSplit += ($seconds / $fiveHundreds);
+                            }
                         }
                     }
                     ?>
@@ -84,7 +88,7 @@ $totalTimes = 0;
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm m-2 rounded-lg mb-auto col-span-2 md:col-span-1">
-                <h3 class="p-4 pb-0 text-xl font-bold">My Weekly Stats</h3>
+                <h3 class="p-4 pb-0 text-xl font-bold">My Monthly Stats</h3>
 
                 <div class="grid grid-cols-2 gap-2">
                     <div class=" p-4">
