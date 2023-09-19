@@ -5,6 +5,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SquadController;
 use App\Models\Log;
+use App\Models\Squad;
 use App\Models\Team;
 use App\Models\Workout;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,17 @@ Route::get('/dashboard', function () {
         $logs = $team->logs->sortByDesc('datetime')->take(20);
     }else {
         $logs = Auth::user()->logs;
+        if(Auth::user()->squad_id == 1)
+        {
+            return view('pick-squad', [
+                'squads'    => Squad::all(),
+                'user'      => Auth::user()
+            ]);
+        }
     }
+
+
+
     return view('dashboard',[
         'logs' => $logs,
         'user' => Auth::user()
@@ -57,6 +68,7 @@ Route::post('/submit-squad', [SquadController::class, 'store'])->middleware(['au
 
 Route::get('/users', [RegisteredUserController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('users');
 Route::post('/users', [RegisteredUserController::class, 'update'])->middleware(['auth', 'verified', 'is_admin'])->name('update.user');
+Route::post('/users-squad', [RegisteredUserController::class, 'setSquad'])->middleware(['auth', 'verified'])->name('set-squad.user');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,3 +1,6 @@
+<?php
+use Illuminate\Support\Facades\Auth;
+?>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,28 +25,32 @@
                         {{ __('Log a Workout') }}
                     </x-nav-link>
                 </div>
-
-                <div class="h-8 w-px bg-gray-300 ml-5"></div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                    <x-nav-link :href="route('logs')" :active="request()->routeIs('logs')">
-                        {{ __('View Logs') }}
-                    </x-nav-link>
-                </div>
+                @if (Auth::user()->is_admin)
+                    
                 
+                    <div class="h-8 w-px bg-gray-300 ml-5"></div>
 
-                
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('edit-squads')" :active="(request()->routeIs('edit-squads') || request()->routeIs('squad-create'))">
-                        {{ __('Squads') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
+                        <x-nav-link :href="route('logs')" :active="request()->routeIs('logs')">
+                            {{ __('View Logs') }}
+                        </x-nav-link>
+                    </div>
+                    
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('users')" :active="(request()->routeIs('users') || request()->routeIs('users'))">
-                        {{ __('Users') }}
-                    </x-nav-link>
-                </div>
+                    
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('edit-squads')" :active="(request()->routeIs('edit-squads') || request()->routeIs('squad-create'))">
+                            {{ __('Squads') }}
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('users')" :active="(request()->routeIs('users') || request()->routeIs('users'))">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
+
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

@@ -65,6 +65,27 @@ class RegisteredUserController extends Controller
         return redirect('/users');
     }
 
+    public function setSquad(Request $request)
+    {
+        $request->validate(['user-id' => 'required']);
+
+        $user = User::find($request->input('user-id'));
+        foreach($request->all() as $k => $v)
+        {
+            if(str_contains($k, 'squad')){
+                $parts = explode('-', $k);
+                if(count($parts) > 0)
+                {
+                    // dd($parts);
+                    $user->squad_id = $parts[1];
+                    $user->save();
+
+                }
+            }
+        }
+        return redirect('/dashboard');
+    }
+
 
     public function index()
     {
