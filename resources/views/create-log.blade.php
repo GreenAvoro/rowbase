@@ -39,7 +39,7 @@
                     <br>
                     <p>Upload an image:</p>
                     <input type="file" name="image" class="rounded"><br>
-                    <input type="submit" value="Submit" class="bg-red-500 text-white px-10 py-2 mt-4 rounded cursor-pointer hover:bg-red-600">
+                    <input type="submit" value="Save" class="bg-red-500 text-white px-10 py-2 mt-4 rounded cursor-pointer hover:bg-red-600">
                 </form>
             </div>
         </div>
